@@ -116,8 +116,7 @@ const Bus= () =>{
    }, [ptxAuthorityURL, nearStations, getAuthorizationHeader]); 
    const  handleSearchRoute = (stops)=>{
        stops.forEach(item=>{
-        searchStopOfRouteUrl(item.RouteUID)
-                
+        searchStopOfRouteUrl(item.RouteUID)                
        })
    }
    useEffect(() => {

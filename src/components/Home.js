@@ -86,7 +86,7 @@ const Home = ()=>{
                     </Link>
                 </ChooseButton>
                 <ChooseButton>
-                    <Link className="choose-btn" to={`/bus`}>
+                    <Link className="choose-btn" to={`/bicycle`}>
                         <img src={bikeMark} alt="bike"/>附近單車
                     </Link>
                 </ChooseButton>

@@ -3,6 +3,7 @@ import L from "leaflet";
 
 const constant = {
   ptxURL: 'https://ptx.transportdata.tw/MOTC/v2/Bus',
+  ptxBicycleURL: 'https://ptx.transportdata.tw/MOTC/v2/Bike',
   ptxAuthorityURL: 'https://ptx.transportdata.tw/MOTC/v2/Basic/Authority',
   getAuthorizationHeader:() =>{
     const AppID = '675dad84079841b3a881006714b3d91e'
@@ -24,6 +25,11 @@ const constant = {
     className: 'map-marker',
     iconSize:null,
     html:'<div class="userIcon"></div>'
+  }),
+  bikeIcon : L.divIcon({
+    className: 'map-marker',
+    iconSize:null,
+    html:'<div class="bikeIcon"></div>'
   }),
   emptyPositionIcon : L.divIcon({
     className: 'map-marker',
