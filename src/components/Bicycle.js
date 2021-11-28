@@ -5,6 +5,7 @@ import L from "leaflet";
 import "leaflet.markercluster";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import 'react-leaflet-markercluster/dist/styles.min.css';
+import Header from "./Header";
 
 const Bicycle = () =>{
     const {ptxBicycleURL,ptxAuthorityURL, userIcon, getAuthorizationHeader, bikeIcon} =constants
@@ -146,17 +147,20 @@ const Bicycle = () =>{
            )))                 
        }
    }, [bikesList.current]);
-   
+
     return(
-        <MapContainer className="map markercluster-map" ref={mapRef} useFlyTo={true} zoom={zoom} center={currentLocation} scrollWheelZoom whenCreated={mapInstance => { mapRef.current = mapInstance }}>
-            <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIcon}>
-                {markers}    
-            </MarkerClusterGroup>   
-        </MapContainer>
+        <>
+            <Header type="map" text="附近的公共單車" router="/"/>
+            <MapContainer className="map markercluster-map" ref={mapRef} useFlyTo={true} zoom={zoom} center={currentLocation} scrollWheelZoom whenCreated={mapInstance => { mapRef.current = mapInstance }}>
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIcon}>
+                    {markers}    
+                </MarkerClusterGroup>   
+            </MapContainer>
+        </>
     );
 }
 export default Bicycle;
