@@ -73,13 +73,14 @@ color: #CCCCCC;
 `
 
 const Stop = ()=>{
-    const {selectedCounty, routeUID} =useParams()
+    const {selectedCounty, routeUID, routeName} =useParams()
     const {ptxURL, getAuthorizationHeader, getMinute} = constants
     const [departureList, getDepartureStopsList] = useState([])
     const [returnList, getReturnStopsList] = useState([])
-    const [isReturnListShow, handleReturnListShow] = useState(false)
+    const [isReturnListShow, handleReturnListShow] = useState(true)
     const [nextFetchSecs, setNextFetch] = useState(0)
     // const [estimatedTimesList, getEstimatedTimesList] = useState([]) 
+    
     function getStopsStatus(direction,stops,estimatedTimes) {
         return stops
           .find(({ Direction }) => Direction === direction)
@@ -150,11 +151,11 @@ const Stop = ()=>{
 
     return(
         <div>
-            <Header type="searchResult" selectedCounty={selectedCounty} routeUID={routeUID}/>
+            <Header type="searchResult" selectedCounty={selectedCounty} routeUID={routeUID} routeName={routeName} router="/search"/>
             <Container>
                 <Direction>
-                    <DirectionItem className={`${isReturnListShow? 'active': ''}`} onClick={()=>handleReturnListShow(true)}>{departureList.length? `往${departureList[departureList.length -1].stopName}` : '沒有去程'}</DirectionItem>
-                    <DirectionItem className={`${!isReturnListShow? 'active': ''}`} onClick={()=>handleReturnListShow(false)}>{returnList.length? `往${returnList[returnList.length -1]?.stopName}` : '沒有回程'}</DirectionItem>
+                    <DirectionItem className={`${isReturnListShow? 'active': ''}`} onClick={()=>handleReturnListShow(true)}>{departureList && departureList.length? `往${departureList[departureList.length -1].stopName}` : '沒有去程'}</DirectionItem>
+                    <DirectionItem className={`${!isReturnListShow? 'active': ''}`} onClick={()=>handleReturnListShow(false)}>{returnList && returnList.length? `往${returnList[returnList.length -1]?.stopName}` : '沒有回程'}</DirectionItem>
                 </Direction>
                 <UpdatedTime>{nextFetchSecs}秒前更新</UpdatedTime>
                 <StopContainer>

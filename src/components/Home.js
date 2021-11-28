@@ -34,14 +34,20 @@ padding: 8px 40px;
 display: flex;
 justify-content: center;
 align-items: center;
-flex-wrap: wrap;
+flex-wrap: nowrap;
 cursor: pointer;
+    
     &:first-of-type{
         margin-right:5px;
     }
 
     &:last-child{
         margin-left:5px;
+    }
+
+    .choose-btn{
+        display: flex;
+        align-items: center;
     }
 `
 
@@ -75,14 +81,18 @@ const Home = ()=>{
             <HomeBg className="home"/>
             <ChooseContainer>
                 <ChooseButton>
-                    <img src={mapMark} alt="stop"/>附近站牌
+                    <Link className="choose-btn" to={`/bus`}>
+                        <img src={mapMark} alt="stop"/>附近站牌
+                    </Link>
                 </ChooseButton>
-                <ChooseButton className="bike-btn">
-                <img src={bikeMark} alt="bike"/>附近單車
+                <ChooseButton>
+                    <Link className="choose-btn" to={`/bus`}>
+                        <img src={bikeMark} alt="bike"/>附近單車
+                    </Link>
                 </ChooseButton>
             </ChooseContainer>
-            <SearchTitle>查詢公車</SearchTitle>
             <SearchBlock>
+                <SearchTitle>查詢公車</SearchTitle>
                 <RoutesList>
                     {
                         routesList && routesList.map(item=>(

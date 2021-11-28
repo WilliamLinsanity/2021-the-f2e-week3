@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useImperativeHandle, useState } from 'react'
 import { Link } from "react-router-dom";
 import arrow from '../assets/images/arrow.png'
 import keyboard from '../assets/images/keyboard.png'
@@ -16,6 +17,11 @@ position: fixed;
 z-index:10;
 top: 0;
 width: 100%;
+
+    &.relative-header{
+        position: relative;
+    }
+
 `
 const LeftArrow = styled.div``
 
@@ -27,17 +33,22 @@ font-size: 20px;
 const RightArrow = styled.div``
 
 const Header = (props) =>{
-    const {type,text, selectedCounty, routeUID} = props
+    const {type, text, selectedCounty, routeUID, routeName, router, searchText, handleSearch} = props
+   
     return(
-        <Container>
+        <Container className={type === 'map'? 'relative-header':''}>
             <LeftArrow>
-                <Link to={`/`}>
+                <Link to={router}>
                     <img src={arrow} alt="arrow"/>
                 </Link>
             </LeftArrow>
             {
-                type === 'input' && 
+                type === 'map' && 
                 <Description>{text}</Description>               
+            }
+            {
+                type ==='input' &&
+                <input className="search-input" placeholder="公車查詢" defaultValue={searchText} onChange={(e) =>handleSearch(e.target.value)}/>
             }
             
             <RightArrow>                               
@@ -47,8 +58,8 @@ const Header = (props) =>{
                      : 
                      (
                          type === 'searchResult'? 
-                         <div className="icon-list">
-                            <Link to={`/stop/map/${selectedCounty}/${routeUID}`}>
+                         <div className="icon-list">                            
+                            <Link to={`/stop/map/${selectedCounty}/${routeUID}/${routeName}`}>
                                 <img src={toMap} alt="Map marker"/>
                             </Link>
                             <img src={menu} alt="menu"/>

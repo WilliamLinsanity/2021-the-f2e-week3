@@ -40,7 +40,7 @@ color: #CCCCCC;
 `
 
 const StopMap = ()=>{
-    const {selectedCounty, routeUID} =useParams()
+    const {selectedCounty, routeUID, routeName} =useParams()
     const {ptxURL, emptyPositionIcon, getAuthorizationHeader} = constants
     const [currentLocation, setCurrentLocation] = useState([25.04270187676874, 121.54349674470315])
     const [departureList, getDepartureStopsList] = useState([])
@@ -131,10 +131,9 @@ const StopMap = ()=>{
             wkt.write();           
             // 依照第一個點去做地圖的中心點
             setCurrentLocation([wkt.toJson().coordinates[0][1],wkt.toJson().coordinates[0][0]])
-            setMarkers( wkt.toJson().coordinates.map((item, index)=>( 
+            setMarkers(wkt.toJson().coordinates.map((item, index)=>( 
               <Marker position={[item[1],item[0]]} icon={emptyPositionIcon}  key={index}>
                  <Popup ref={popupRef}>
-                       <div className="station-name">{item.StationName.Zh_tw}</div>
                    </Popup>
               </Marker>
                            
@@ -142,7 +141,7 @@ const StopMap = ()=>{
             const feature = { "type": "Feature", 'properties': {}, "geometry": wkt.toJson()  };
             L.geoJSON(feature).addTo(mapRef.current);
         }
-    }, [busShape]);
+    }, [busShape, emptyPositionIcon]);
 
      //移至目標位置
      useEffect(() => {
@@ -153,7 +152,7 @@ const StopMap = ()=>{
 
     return(
         <div>
-            <Header type="searchResult"/>
+            <Header type="map" text={routeName} router={`/stop/${selectedCounty}/${routeUID}/${routeName}`}/>
             <Container>
                 <Direction>
                     <DirectionItem className={`${isReturnListShow? 'active': ''}`} onClick={()=>handleReturnListShow(true)}>{departureList.length? `往${departureList[departureList.length -1].stopName}` : '沒有去程'}</DirectionItem>

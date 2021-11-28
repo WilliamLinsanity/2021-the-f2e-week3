@@ -4,7 +4,6 @@ $secondary: #666666;
 .App {
   text-align: center;
   background-image: url('./assets/images/background.png');
-  // height: 100vh;
   min-height: 100vh;
   width: 100%;
   font-size: 12px;
@@ -43,6 +42,15 @@ $secondary: #666666;
     }
   }
 
+  .search-input{
+    background: #F8F8F8;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+    font-size: 16px;
+    color: $secondary;
+    padding: 5px 40px;
+  }
+
 
   .route-item:last-child:nth-child(4n - 1) {
     margin-right: calc(24% + 4% / 3);
@@ -55,7 +63,7 @@ $secondary: #666666;
   .route-item{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     background-color: #F8F8F8;
     width:20%;
@@ -84,6 +92,7 @@ $secondary: #666666;
     margin: 8px 15px;
     box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
+    max-height: 60px;
 
     &:last-child{
       margin: 8px 15px 15px 15px;
@@ -93,6 +102,7 @@ $secondary: #666666;
         padding-bottom: 1px;
         font-size: 18px;
     }
+
     .stop-name{
       color: $secondary;
     }
@@ -101,7 +111,6 @@ $secondary: #666666;
       margin:0 2px;
     }
   }
-
 
   .estimated_time{
     margin-right: 8px;
@@ -175,31 +184,47 @@ $secondary: #666666;
     }
 
     .userIcon{
-      position: relative;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #1973ED;
-      z-index: 400;
-  
-      &::before{
-        content: '';
-        border-radius: 50%;
-        border: 1px solid #1973ED;
-        background-image: radial-gradient(circle, #1973ED, rgba(25, 115, 237, 0.2) 100%);
-        height: 50px;
-        left: 50%;
-        opacity: 0.2;
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 50px;
-      }    
+      background-image: url("./assets/images/user.png");
+      background-repeat:no-repeat;
+      background-position:center;
+      width: 50px;
+      height: 50px;
     }
   }
+  
+  .map{
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .popup-container{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+
+    .popup-title{
+      color: $primary;
+      font-size: 20px;
+      padding-bottom: 15px;
+    }
+
+    .popup-wrapper{
+      display:flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 16px;
+  
+      .destination-name{
+        margin-left: 8px;
+      }
+  
+      .dash{
+        margin:0 2px;
+      }
+    }
+  }
+  
 }
 
-.map{
-  position: relative;
-  height: calc(100vh - 80px)
-}
+

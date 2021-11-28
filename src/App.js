@@ -13,10 +13,10 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<Home/>} />
-          {/* <Route path="/bus" element={<Bus/>} /> */}
+          <Route path="/bus" element={<Bus/>} />
           <Route path="/search/:selectedCounty" element={<Search/>} />
-          {/* <Route path="/stop/:selectedCounty/:routeUID/:routeName" element={<Stop/>} />
-          <Route path="/stop/map/:selectedCounty/:routeUID/:routeName" element={<StopMap/>} /> */}
+          <Route path="/stop/:selectedCounty/:routeUID/:routeName" element={<Stop/>} />
+          <Route path="/stop/map/:selectedCounty/:routeUID/:routeName" element={<StopMap/>} />
         </Routes>
     </HashRouter>
     </div>
