@@ -3,6 +3,7 @@ import L from "leaflet";
 
 const constant = {
   ptxURL: 'https://ptx.transportdata.tw/MOTC/v2/Bus',
+  ptxAuthorityURL: 'https://ptx.transportdata.tw/MOTC/v2/Basic/Authority',
   getAuthorizationHeader:() =>{
     const AppID = '675dad84079841b3a881006714b3d91e'
     const AppKey= 'D0MV31l-dasLMnv5qe9Ly56Rm6Y'        

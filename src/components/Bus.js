@@ -19,37 +19,26 @@ height: 100vh;
 const StopList = styled.div`
 background-color: #FFFFFF;
 position: absolute;
-bottom: 0;
+bottom: 50px;
 width: 100%;
 z-index: 10000;
 `
 
 const Bus= () =>{
-    const {ptxURL,stationIcon, userIcon, getAuthorizationHeader, getMinute} = constants
-    
-    // <GeoJSON key={keyFunction(this.props.map.data.json)} data={this.props.map.data.json} />
-    // const [busesInfo,getBusesInfo] = useState([])
-    // const [busShape,getBusShape] = useState([])
-    // const [stationPosition,getStationPosition] = useState([])
-    // const [stationsList,getStationsList] = useState([])
-    // const [selectedBeginStation, handleSelectBeginStation] = useState({label:'',value:''})
-    // const [selectedEndStation, handleSelectEndStation] = useState({label:'',value:''})
+    const {ptxURL, ptxAuthorityURL,stationIcon, userIcon, getAuthorizationHeader, getMinute} = constants
     const [currentLocation, setCurrentLocation] = useState([51.505, -0.09])
-    const [selectedCounty, handleSelectCounty] = useState({label:'台北市',value:'Taipei'})
     const [nearStations, getNearStations] = useState([])
     const [stopOfRouteList,setStopOfRouteList] = useState({})
-    const [routesList,setRoutesList] = useState([])
     const [stopName, setStopName] =useState('')
     const [popupList, setPopupList] = useState([])
     const [departureInfo, getDepartureInfo] = useState([])
     const [returnInfo, getReturnStopsInfo] = useState([])
     const [zoom, setZoom] = useState(13)
-    // const [estimatedTime,getEstimatedTime] = useState([])
+    const [nowCounty,setNowCounty] =useState('')
     let [markers, setMarkers] = useState(null);
-    const mapRef = useRef('')
-    // let defaultValue = useRef()
-    // const popupRef = useRef() 
+    const mapRef = useRef('') 
     const top = 30
+
         // 定位
         useEffect(() => {
             if (navigator.geolocation) {
@@ -105,9 +94,26 @@ const Bus= () =>{
                 },
               }}>                   
                </Marker>
-           )))                 
-       }
-   }, [nearStations, stationIcon]);    
+           )))  
+        }
+    }, [nearStations, stationIcon, nowCounty]);  
+
+    useEffect(() => {
+        if(nearStations && nearStations.length){
+            const splitString = nearStations[0].StationUID.replace(/[0-9]/g, '');           
+            fetch(`${ptxAuthorityURL}?$filter=AuthorityCode%20eq%20'${splitString}'&$top=30&$format=JSON`,
+            {
+                headers: getAuthorizationHeader()
+            }).then(res=>res.json())
+            .then( (response) => {
+                const county = constants.countyList.find(item=>item.label === response[0].AuthorityName.Zh_tw.slice(0, 3)).value
+                setNowCounty(county)
+            })
+            .catch( (error) => {
+                console.log(error);
+            });
+        }
+   }, [ptxAuthorityURL, nearStations, getAuthorizationHeader]); 
    const  handleSearchRoute = (stops)=>{
        stops.forEach(item=>{
         searchStopOfRouteUrl(item.RouteUID)
@@ -117,7 +123,7 @@ const Bus= () =>{
    useEffect(() => {
     const {stops, routeUID} = stopOfRouteList
 
-    fetch(`${ptxURL}/EstimatedTimeOfArrival/City/${selectedCounty.value}?$filter=RouteUID%20eq%20'${routeUID}'&$format=JSON`,
+    fetch(`${ptxURL}/EstimatedTimeOfArrival/City/${nowCounty}?$filter=RouteUID%20eq%20'${routeUID}'&$format=JSON`,
     { headers: getAuthorizationHeader() }
     ).then(res=>res.json())
     .then( (response) => {   
@@ -163,7 +169,7 @@ const Bus= () =>{
     .catch( (error) => {
         console.log(error);
     }); 
-   }, [getAuthorizationHeader,ptxURL,stopOfRouteList, selectedCounty.value]);
+   }, [getAuthorizationHeader,ptxURL,stopOfRouteList, nowCounty]);
    
    useEffect(() => {
        if(departureInfo && departureInfo.length){
@@ -178,7 +184,7 @@ const Bus= () =>{
    }, [returnInfo, stopName]);
 
      function searchStopOfRouteUrl(routeUID){        
-        fetch(`${ptxURL}/StopOfRoute/City/${selectedCounty.value}?$filter=RouteUID%20eq%20'${routeUID}'&$top=30&$format=JSON`,
+        fetch(`${ptxURL}/StopOfRoute/City/${nowCounty}?$filter=RouteUID%20eq%20'${routeUID}'&$top=30&$format=JSON`,
         { headers: getAuthorizationHeader() }
         ).then(res=>res.json())
         .then( (response) => {

@@ -151,7 +151,7 @@ const Stop = ()=>{
 
     return(
         <div>
-            <Header type="searchResult" selectedCounty={selectedCounty} routeUID={routeUID} routeName={routeName} router="/search"/>
+            <Header type="searchResult" selectedCounty={selectedCounty} routeUID={routeUID} routeName={routeName} router={`/search/${selectedCounty}`}/>
             <Container>
                 <Direction>
                     <DirectionItem className={`${isReturnListShow? 'active': ''}`} onClick={()=>handleReturnListShow(true)}>{departureList && departureList.length? `往${departureList[departureList.length -1].stopName}` : '沒有去程'}</DirectionItem>

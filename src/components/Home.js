@@ -56,7 +56,7 @@ const SearchBlock = styled.div``
 const SearchTitle = styled.div`
 font-size: 16px;
 margin-bottom: 6px;
-text-align: left;
+text-align: center;
 width: 100%;
 padding-left: 15px;
 `
@@ -64,7 +64,7 @@ padding-left: 15px;
 const RoutesList = styled.div`
 display: flex;
 flex-wrap: wrap;
-justify-content: flex-start;
+justify-content: center;
 padding: 0 15px;
 `
 
