@@ -2,6 +2,7 @@
   "name": "thef2e-week3",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://williamlinsanity.github.io/2021-the-f2e-week3/",
   "dependencies": {
     "@craco/craco": "^6.4.1",
     "@emotion/react": "^11.6.0",
