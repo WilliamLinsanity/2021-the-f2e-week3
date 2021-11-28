@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { Route } from 'react-router-dom';
+import { Routes,BrowserRouter } from "react-router-dom";
+// import Bus from './components/Bus'
+import Search from './components/Search';
+import Home from './components/Home';
+import Stop from './components/Stop';
+import StopMap from './components/StopMap';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          {/* <Route path="/bus" element={<Bus/>} /> */}
+          <Route path="/search/:selectedCounty" element={<Search/>} />
+          <Route path="/stop/:selectedCounty/:routeUID" element={<Stop/>} />
+          <Route path="/stop/map/:selectedCounty/:routeUID" element={<StopMap/>} />
+        </Routes>
+    </BrowserRouter>
     </div>
   );
 }
