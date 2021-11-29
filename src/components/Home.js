@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import bikeMark from "../assets/images/bikeMark.png";
 import mapMark from "../assets/images/mapMark.png";
 import constants from '../constants'
-import { useNavigate, Link  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
 display: flex;
@@ -10,7 +10,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 width: 100%;
-height: 100vh;
+height: 100%;
 `
 
 const HomeBg = styled.div``
@@ -49,6 +49,10 @@ cursor: pointer;
         display: flex;
         align-items: center;
     }
+
+    div{
+        padding-left: 3px;
+    }
 `
 
 const SearchBlock = styled.div``
@@ -58,7 +62,6 @@ font-size: 16px;
 margin-bottom: 6px;
 text-align: center;
 width: 100%;
-padding-left: 15px;
 `
 
 const RoutesList = styled.div`
@@ -69,8 +72,7 @@ padding: 0 15px;
 `
 
 const Home = ()=>{
-    const routesList = constants.routesList
-    const navigate  = useNavigate();
+    const routesList = constants.countyList
 
     return (
         <Container>
@@ -82,12 +84,14 @@ const Home = ()=>{
             <ChooseContainer>
                 <ChooseButton>
                     <Link className="choose-btn" to={`/bus`}>
-                        <img src={mapMark} alt="stop"/>附近站牌
+                        <img src={mapMark} alt="stop"/>
+                        <div>附近站牌</div>
                     </Link>
                 </ChooseButton>
                 <ChooseButton>
                     <Link className="choose-btn" to={`/bicycle`}>
-                        <img src={bikeMark} alt="bike"/>附近單車
+                        <img src={bikeMark} alt="bike"/>
+                        <div>附近單車</div>
                     </Link>
                 </ChooseButton>
             </ChooseContainer>

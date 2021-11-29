@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import Header from './Header';
 import Wkt from 'wicket'
 import L from "leaflet";
-import { TileLayer, MapContainer, Marker, Popup } from 'react-leaflet'
+import { TileLayer, MapContainer, Marker } from 'react-leaflet'
 
 const Container = styled.div`
 display: flex;
@@ -49,7 +49,6 @@ const StopMap = ()=>{
     const [busShape,getBusShape] = useState([])
     const [markers, setMarkers] = useState(null);
     const mapRef = useRef('')
-    const popupRef = useRef('')
     const top = 100
     const zoom = 15
 
@@ -132,10 +131,7 @@ const StopMap = ()=>{
             // 依照第一個點去做地圖的中心點
             setCurrentLocation([wkt.toJson().coordinates[0][1],wkt.toJson().coordinates[0][0]])
             setMarkers(wkt.toJson().coordinates.map((item, index)=>( 
-              <Marker position={[item[1],item[0]]} icon={emptyPositionIcon}  key={index}>
-                 <Popup ref={popupRef}>
-                   </Popup>
-              </Marker>
+              <Marker position={[item[1],item[0]]} icon={emptyPositionIcon}  key={index}/>              
                            
             )))
             const feature = { "type": "Feature", 'properties': {}, "geometry": wkt.toJson()  };
@@ -145,7 +141,7 @@ const StopMap = ()=>{
 
      //移至目標位置
      useEffect(() => {
-      if(mapRef && mapRef.current ){
+      if(mapRef && mapRef.current){
           mapRef.current.flyTo(currentLocation, 14) 
       }
   }, [currentLocation]);

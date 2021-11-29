@@ -19,14 +19,14 @@ height: 100vh;
 const StopList = styled.div`
 background-color: #FFFFFF;
 position: absolute;
-bottom: 50px;
+bottom: 0;
 width: 100%;
 z-index: 10000;
 `
 
 const Bus= () =>{
     const {ptxURL, ptxAuthorityURL,stationIcon, userIcon, getAuthorizationHeader, getMinute} = constants
-    const [currentLocation, setCurrentLocation] = useState([51.505, -0.09])
+    const [currentLocation, setCurrentLocation] = useState([25.04270187676874, 121.54349674470315])
     const [nearStations, getNearStations] = useState([])
     const [stopOfRouteList,setStopOfRouteList] = useState({})
     const [stopName, setStopName] =useState('')
@@ -198,8 +198,7 @@ const Bus= () =>{
             <Header type="map" text="附近的公車站" router="/"/>
             <MapBlock>
                 <MapContainer className="map markercluster-map" ref={mapRef} useFlyTo={true} zoom={zoom} center={currentLocation} 
-                scrollWheelZoom whenCreated={mapInstance => { mapRef.current = mapInstance }}
-                onzoomend={() => console.log(mapRef.current.leafletElement.getZoom())}>
+                scrollWheelZoom whenCreated={mapInstance => { mapRef.current = mapInstance }}>
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
