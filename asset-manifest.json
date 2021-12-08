@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/2021-the-f2e-week3/static/css/main.7c4a1f93.chunk.css",
+    "main.js": "/2021-the-f2e-week3/static/js/main.cbfe2fb7.chunk.js",
+    "main.js.map": "/2021-the-f2e-week3/static/js/main.cbfe2fb7.chunk.js.map",
+    "runtime-main.js": "/2021-the-f2e-week3/static/js/runtime-main.909f7e11.js",
+    "runtime-main.js.map": "/2021-the-f2e-week3/static/js/runtime-main.909f7e11.js.map",
+    "static/css/2.c949694d.chunk.css": "/2021-the-f2e-week3/static/css/2.c949694d.chunk.css",
+    "static/js/2.77d68675.chunk.js": "/2021-the-f2e-week3/static/js/2.77d68675.chunk.js",
+    "static/js/2.77d68675.chunk.js.map": "/2021-the-f2e-week3/static/js/2.77d68675.chunk.js.map",
+    "static/js/3.c6b0d167.chunk.js": "/2021-the-f2e-week3/static/js/3.c6b0d167.chunk.js",
+    "static/js/3.c6b0d167.chunk.js.map": "/2021-the-f2e-week3/static/js/3.c6b0d167.chunk.js.map",
+    "index.html": "/2021-the-f2e-week3/index.html",
+    "static/css/2.c949694d.chunk.css.map": "/2021-the-f2e-week3/static/css/2.c949694d.chunk.css.map",
+    "static/css/main.7c4a1f93.chunk.css.map": "/2021-the-f2e-week3/static/css/main.7c4a1f93.chunk.css.map",
+    "static/js/2.77d68675.chunk.js.LICENSE.txt": "/2021-the-f2e-week3/static/js/2.77d68675.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/2021-the-f2e-week3/static/media/mainPic.8d66c2f5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.909f7e11.js",
+    "static/css/2.c949694d.chunk.css",
+    "static/js/2.77d68675.chunk.js",
+    "static/css/main.7c4a1f93.chunk.css",
+    "static/js/main.cbfe2fb7.chunk.js"
+  ]
+}
