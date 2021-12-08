@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useImperativeHandle, useState } from 'react'
+// import { useImperativeHandle, useState } from 'react'
 import { Link } from "react-router-dom";
 import arrow from '../assets/images/arrow.png'
 import keyboard from '../assets/images/keyboard.png'
@@ -14,15 +14,11 @@ align-items: center;
 justify-content: space-between;
 padding:16px 16px;
 position: fixed;
-z-index:10;
+z-index:401;
 top: 0;
 width: 100%;
-
-    &.relative-header{
-        position: relative;
-    }
-
 `
+
 const LeftArrow = styled.div``
 
 const Description = styled.div`
